@@ -61,7 +61,6 @@ def main():
     st.markdown('''<style>
         .stApp {background: #fff; color: #202124;}
         .block-container {max-width: 1160px; padding-top: 3rem;}
-        .rate-title {font-size: clamp(32px, 5vw, 48px); font-weight: 400; margin-bottom: 8px;}
         div[data-baseweb="input"], div[data-baseweb="select"] > div {
             border-color: #dadce0; border-radius: 10px; background: white;}
         div[role="radiogroup"] {gap: 8px; flex-wrap: wrap;}
@@ -73,6 +72,7 @@ def main():
         if key not in st.session_state:
             st.session_state[key] = value
     st.title('💱 환율 계산기')
+    st.write('금액과 통화를 선택하면 환산 결과를 바로 확인할 수 있습니다. 오른쪽 그래프에서 기간별 환율 변화도 살펴보세요.')
     header = st.container()
     left, right = st.columns([4, 6], gap='large')
     with left:
@@ -92,9 +92,6 @@ def main():
         if rate is None:
             raise ValueError('현재 지원하지 않는 대상 통화입니다.')
         with header:
-            st.write(f'1 {CURRENCIES[base]} =')
-            st.markdown(f'<div class="rate-title">{format_number(rate)} {CURRENCIES[target]}</div>',
-                        unsafe_allow_html=True)
             st.caption('🕒 ExchangeRate-API 제공 · 마지막 업데이트 ' + format_update(data.get('time_last_update_unix')))
             st.caption('최신 제공 고시 환율입니다. 실제 거래 시 적용되는 환율과 다를 수 있습니다.')
         result_area.metric('💰 변환 결과', f'{format_number(amount * rate)} {target}')
