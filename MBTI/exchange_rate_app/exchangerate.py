@@ -36,15 +36,16 @@ def render_history(base, target):
         frame = frame.tail(1)
     figure = go.Figure(go.Scatter(
         x=frame['date'], y=frame['rate'], mode='lines+markers' if len(frame) < 6 else 'lines',
-        line={'color': '#1a73e8', 'width': 2}, marker={'size': 6},
+        line={'color': '#174ea6', 'width': 3}, marker={'size': 7},
         customdata=[str(value) for value in frame['rate']],
         hovertemplate='%{x|%Y-%m-%d}<br>%{customdata} ' + target + '<extra></extra>',
     ))
     figure.update_layout(height=350, margin=dict(l=10, r=10, t=15, b=15),
                          showlegend=False, paper_bgcolor='white', plot_bgcolor='white',
-                         font=dict(color='#5f6368'), hovermode='x unified')
+                         font=dict(color='#243247', size=14), hovermode='x unified',
+                         hoverlabel=dict(bgcolor='white', font_color='#172033', font_size=15))
     figure.update_xaxes(showgrid=False, title=None)
-    figure.update_yaxes(gridcolor='#eef0f2', zeroline=False, tickformat='.6g', title=None)
+    figure.update_yaxes(gridcolor='#d9e1eb', zeroline=False, tickformat='.6g', title=None)
     st.plotly_chart(figure, width='stretch', config={'displayModeBar': False})
     st.caption(f"표시 범위: {frame['date'].iloc[0]:%Y-%m-%d} ~ {frame['date'].iloc[-1]:%Y-%m-%d}")
     if group:
@@ -59,20 +60,66 @@ def render_history(base, target):
 def main():
     st.set_page_config(page_title='환율 계산기', page_icon='💱', layout='wide')
     st.markdown('''<style>
-        .stApp {background: #fff; color: #202124;}
+        /* 기기의 다크 모드에서도 흰 배경과 진한 글자 조합을 유지한다. */
+        .stApp {background: #fff; color: #172033; color-scheme: light;}
         .block-container {max-width: 1160px; padding-top: 3rem;}
+        .stApp h1, .stApp h2, .stApp h3,
+        .stApp [data-testid="stMarkdownContainer"],
+        .stApp [data-testid="stWidgetLabel"],
+        .stApp [data-testid="stMetricLabel"],
+        .stApp [data-testid="stMetricValue"] {color: #172033;}
+        .stApp [data-testid="stCaptionContainer"] {
+            color: #374151; font-size: 0.95rem; line-height: 1.6;}
+        .stApp [data-testid="stWidgetLabel"] p {font-weight: 650; font-size: 1rem;}
         div[data-baseweb="input"], div[data-baseweb="select"] > div {
-            border-color: #dadce0; border-radius: 10px; background: white;}
+            border: 1px solid #78879b; border-radius: 10px; background: #fff;
+            color: #172033; min-height: 48px;}
+        .stApp input, div[data-baseweb="select"] input {
+            color: #172033 !important; -webkit-text-fill-color: #172033;
+            font-size: 16px !important; font-weight: 600; caret-color: #174ea6;}
+        div[data-baseweb="select"] span {color: #172033; font-weight: 600;}
+        div[data-baseweb="select"] svg {color: #172033;}
+        /* 선택 목록은 본문 밖에 렌더링되므로 별도로 지정한다. */
+        div[data-baseweb="popover"], ul[role="listbox"], li[role="option"] {
+            background: #fff; color: #172033; color-scheme: light;}
+        li[role="option"]:hover, li[role="option"][aria-selected="true"] {
+            background: #dbeafe; color: #123c80;}
+        .stApp [data-testid="stButton"] button {
+            background: #174ea6; color: #fff; border: 2px solid #174ea6;
+            min-height: 48px; border-radius: 10px; font-weight: 700;}
+        .stApp [data-testid="stButton"] button p {color: #fff; font-weight: 700;}
+        .stApp [data-testid="stButton"] button:hover {
+            background: #103b80; border-color: #103b80; color: #fff;}
+        .stApp [data-testid="stNumberInput"] button {
+            background: #e8eef7; color: #172033; border-left: 1px solid #78879b;}
+        .stApp [data-testid="stNumberInput"] button:disabled {
+            background: #f1f5f9; color: #64748b;}
+        .stApp button:focus-visible, div[data-baseweb="input"]:focus-within,
+        div[data-baseweb="select"]:focus-within {
+            outline: 3px solid #174ea6; outline-offset: 3px;}
         div[role="radiogroup"] {gap: 8px; flex-wrap: wrap;}
-        div[role="radiogroup"] label {border-radius: 20px; padding: 5px 10px;}
-        div[role="radiogroup"] label:has(input:checked) {background: #e8f0fe; color: #1a73e8;}
+        div[role="radiogroup"] label {
+            border: 1px solid #78879b; border-radius: 22px; padding: 8px 12px;
+            min-height: 44px; background: #f1f5f9; color: #172033;}
+        div[role="radiogroup"] label p {color: #172033; font-weight: 600;}
+        div[role="radiogroup"] label:has(input:checked) {
+            background: #174ea6; border-color: #174ea6; color: #fff;}
+        div[role="radiogroup"] label:has(input:checked) p {color: #fff;}
+        div[role="radiogroup"] label:focus-within {outline: 3px solid #174ea6; outline-offset: 3px;}
+        .stApp [data-testid="stAlert"] {background: #edf4ff; color: #172033; border: 1px solid #78879b;}
+        .stApp a {color: #174ea6;}
+        @media (max-width: 640px) {
+            .block-container {padding: 1.5rem 1rem;}
+            .stApp h1 {font-size: 2rem;}
+            .stApp [data-testid="stMetricValue"] {font-size: 1.65rem; overflow-wrap: anywhere;}
+        }
         </style>''', unsafe_allow_html=True)
     for key, value in {'amount': 1.0, 'base_currency': 'USD',
                        'target_currency': 'KRW', 'selected_period': '1개월'}.items():
         if key not in st.session_state:
             st.session_state[key] = value
     st.title('💱 환율 계산기')
-    st.write('금액과 통화를 선택하면 환산 결과를 바로 확인할 수 있습니다. 오른쪽 그래프에서 기간별 환율 변화도 살펴보세요.')
+    st.write('금액과 통화를 선택하면 환산 결과를 바로 확인할 수 있습니다. 그래프에서 기간별 환율 변화도 살펴보세요.')
     header = st.container()
     left, right = st.columns([4, 6], gap='large')
     with left:
