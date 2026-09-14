@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_8e303d7c40eaba4e544d90bccda8cf38 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_8e303d7c40eaba4e544d90bccda8cf38" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_8e303d7c40eaba4e544d90bccda8cf38 = L.map(
+                "map_8e303d7c40eaba4e544d90bccda8cf38",
+                {
+                    center: [35.6586, 139.7454],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_f32484d37b7696e513c2ca09bda1bfae = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_f32484d37b7696e513c2ca09bda1bfae.addTo(map_8e303d7c40eaba4e544d90bccda8cf38);
+        
+    
+            var marker_b359533c44de0abbdc6323ebaf572504 = L.marker(
+                [35.6584, 139.7022],
+                {
+}
+            ).addTo(map_8e303d7c40eaba4e544d90bccda8cf38);
+        
+    
+        var popup_8e99e3544170314373c740b3e8aaecab = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a19746c3e65ae0ef60e5ca545cefded1 = $(`<div id="html_a19746c3e65ae0ef60e5ca545cefded1" style="width: 100.0%; height: 100.0%;">시부야스카이</div>`)[0];
+                popup_8e99e3544170314373c740b3e8aaecab.setContent(html_a19746c3e65ae0ef60e5ca545cefded1);
+            
+        
+
+        marker_b359533c44de0abbdc6323ebaf572504.bindPopup(popup_8e99e3544170314373c740b3e8aaecab)
+        ;
+
+        
+    
+    
+            marker_b359533c44de0abbdc6323ebaf572504.bindTooltip(
+                `<div>
+                     시부야스카이
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_f6b619871192852497cae716b8b7ff82 = L.marker(
+                [35.6586, 139.7454],
+                {
+}
+            ).addTo(map_8e303d7c40eaba4e544d90bccda8cf38);
+        
+    
+        var popup_729769244621d6e6a4ee7c80c3ef4c38 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_40e293bbfa40d8397b89cd02b7d7d6b7 = $(`<div id="html_40e293bbfa40d8397b89cd02b7d7d6b7" style="width: 100.0%; height: 100.0%;">도쿄타워</div>`)[0];
+                popup_729769244621d6e6a4ee7c80c3ef4c38.setContent(html_40e293bbfa40d8397b89cd02b7d7d6b7);
+            
+        
+
+        marker_f6b619871192852497cae716b8b7ff82.bindPopup(popup_729769244621d6e6a4ee7c80c3ef4c38)
+        ;
+
+        
+    
+    
+            marker_f6b619871192852497cae716b8b7ff82.bindTooltip(
+                `<div>
+                     도쿄타워
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_a68212a58f333c645c06a6203abea29e = L.marker(
+                [35.6909, 139.7003],
+                {
+}
+            ).addTo(map_8e303d7c40eaba4e544d90bccda8cf38);
+        
+    
+        var popup_7583905c733494a634717bb4cefe2d0e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a28a7c6fdd3eaef274ad596415bcafc2 = $(`<div id="html_a28a7c6fdd3eaef274ad596415bcafc2" style="width: 100.0%; height: 100.0%;">JR신주쿠역</div>`)[0];
+                popup_7583905c733494a634717bb4cefe2d0e.setContent(html_a28a7c6fdd3eaef274ad596415bcafc2);
+            
+        
+
+        marker_a68212a58f333c645c06a6203abea29e.bindPopup(popup_7583905c733494a634717bb4cefe2d0e)
+        ;
+
+        
+    
+    
+            marker_a68212a58f333c645c06a6203abea29e.bindTooltip(
+                `<div>
+                     JR신주쿠역
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c8c53563ae06a2c84d842d98c728da55 = L.marker(
+                [35.7148, 139.7967],
+                {
+}
+            ).addTo(map_8e303d7c40eaba4e544d90bccda8cf38);
+        
+    
+        var popup_356b793ea4dc35f75579062a7e356130 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_32e88202fc0cad47728094cedc7f8fed = $(`<div id="html_32e88202fc0cad47728094cedc7f8fed" style="width: 100.0%; height: 100.0%;">아사쿠사 센소지</div>`)[0];
+                popup_356b793ea4dc35f75579062a7e356130.setContent(html_32e88202fc0cad47728094cedc7f8fed);
+            
+        
+
+        marker_c8c53563ae06a2c84d842d98c728da55.bindPopup(popup_356b793ea4dc35f75579062a7e356130)
+        ;
+
+        
+    
+    
+            marker_c8c53563ae06a2c84d842d98c728da55.bindTooltip(
+                `<div>
+                     아사쿠사 센소지
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
