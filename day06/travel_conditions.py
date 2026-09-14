@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, timezone
 
 import requests
 import streamlit as st
+from babel.numbers import get_currency_name
 
 
 @st.cache_data(ttl=600, show_spinner=False)
@@ -99,6 +100,7 @@ def render_exchange(place, api_key):
     if default not in rates:
         default = None
     currency = st.selectbox("환산할 통화", currencies, index=currencies.index(default) if default else None,
+                            format_func=lambda code: f"{code} ({get_currency_name(code, locale='ko')})",
                             placeholder="여행지에서 사용하는 통화를 선택하세요", key=f"travel_currency_{country_code}")
     if not default:
         st.caption("이 국가의 통화는 직접 선택해주세요.")
