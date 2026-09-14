@@ -202,7 +202,7 @@ styles = {
 st.sidebar.subheader("🗺️ 지도 옵션")
 st.sidebar.caption("두 탭의 지도에 공통으로 적용됩니다.")
 map_mode = st.sidebar.radio("🖼️ 지도 보기 방식", ["🖱️ 인터랙티브 지도", "📷 정적 지도"])
-style = st.sidebar.selectbox("🗺️ 지도 배경", list(styles))
+style = st.sidebar.selectbox("🗺️ 지도 배경", list(styles), index=list(styles).index("위성 지도"))
 static_zoom = 7
 if map_mode == "📷 정적 지도":
     static_zoom = st.sidebar.slider(

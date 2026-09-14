@@ -33,7 +33,7 @@ def search_locations(query, token):
 
 def render_travel_search(token, weather_key="", exchange_key="", *,
                          map_mode="🖱️ 인터랙티브 지도",
-                         map_style="mapbox://styles/mapbox/streets-v12", static_zoom=7):
+                         map_style="mapbox://styles/mapbox/satellite-streets-v12", static_zoom=7):
     st.subheader("✈️ 해외여행 도우미")
     st.caption("여행할 도시·지역·주소를 검색해 위치를 확인하세요. 예: Paris, London, 타이베이")
     st.caption("도시와 주소 검색을 지원합니다. 상호명이나 관광시설 이름은 주소로 검색해주세요.")
