@@ -76,6 +76,9 @@ COUNTRY_CURRENCIES = {
 
 def render_exchange(place, api_key):
     st.subheader("💱 여행지 환율")
+    if place.get("country_code", "").upper() == "KR":
+        st.info("🇰🇷 한국은 원화(KRW)를 사용하므로 별도의 환율 계산이 필요 없습니다.")
+        return
     if not api_key:
         st.info(".env에 EXCHANGE_RATE_API_KEY를 추가하면 환율과 환전 계산기를 사용할 수 있습니다.")
         return
